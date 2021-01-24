@@ -18,8 +18,8 @@ export class EditApplicant extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                Sno: event.target.Sno.value,
-                Id: this.props.editid,
+                Sno: parseInt(event.target.Sno.value),
+                Id: parseInt(this.props.editid),
                 FirstName: event.target.FirstName.value,
                 LastName: event.target.LastName.value
             })

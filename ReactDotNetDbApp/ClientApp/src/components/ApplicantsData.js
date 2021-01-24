@@ -12,7 +12,7 @@ export class ApplicantsData extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {applicantsData: [], loading: true, addModalShow: false, editModalShow: false};
+        this.state = { applicantsData: [], loading: true, addModalShow: false, editModalShow: false, currentSort: 'default'};
     }
 
     componentDidMount() {
@@ -39,13 +39,47 @@ export class ApplicantsData extends Component {
                     })
         }
     }
+
+    // sort the date 
+    // method called every time the sort button is clicked
+    // it will change the currentSort value to the next one
+    onSortChange = () => {
+        const { currentSort } = this.state;
+        let nextSort;
+
+        if (currentSort === 'down') nextSort = 'up';
+        else if (currentSort === 'up') nextSort = 'default';
+        else if (currentSort === 'default') nextSort = 'down';
+
+        this.setState({
+            currentSort: nextSort
+        });
+    };
+
     render() {
         //added new line
-        const { editsno, editId, editFirstName, editLastName } = this.state;      
+        const { editsno, editId, editFirstName, editLastName } = this.state;     
+        const { currentSort } = this.state;
 
         let addModalClose = () => this.setState({ addModalShow: false });
         let editModalClose = () => this.setState({ editModalShow: false });
         let applicantsData = this.state.applicantsData;
+
+        //keyboard actions for date sort
+        const sortTypes = {
+            up: {
+                class: 'sort-up',
+                fn: (a, b) => a.dateOfStart.localeCompare(b.dateOfStart)
+            },
+            down: {
+                class: 'sort-down',
+                fn: (a, b) => b.dateOfStart.localeCompare(a.dateOfStart)
+            },
+            default: {
+                class: 'sort',
+                fn: (a, b) => a
+            }
+        };
 
         let tablecontents = (
             <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -54,14 +88,27 @@ export class ApplicantsData extends Component {
                         <th>Sno</th>
                         <th>FirstName</th>
                         <th>LastName</th>
+                        <th>Email</th>                        
+                        <th>Mobile</th>
+                        <th>Address</th>
+
+                        <th>Start Date
+                            <button onClick={this.onSortChange}>
+                                <i className={`fas fa-${sortTypes[currentSort].class}`} />
+                            </button>
+                        </th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    {applicantsData.map(applicantData =>
+                    {[...applicantsData].sort(sortTypes[currentSort].fn).map(applicantData =>
                         <tr key={applicantData.sno}>
                             <td>{applicantData.sno}</td>
                             <td>{applicantData.firstName}</td>
                             <td>{applicantData.lastName}</td>
+                            <td>{applicantData.email}</td>
+                            <td>{applicantData.mobile}</td>
+                            <td>{applicantData.dateOfStart}</td>
                             <td>
                                 <ButtonToolbar>
                                     <Button className="mr-2" variant="info"
@@ -105,7 +152,7 @@ export class ApplicantsData extends Component {
         return (
             <div>
                 <h1 id="tabelLabel" >Applicants Data</h1>
-                <p>This component demonstrates fetching data from the server.</p>
+                <p>Total Number of Applicants : {applicantsData.length}</p>
                 {/*<button type="button" >All Employee</button>
                  <Button variant='primary'
                     onClick={() => this.setState({ addModalShow: true })}>
@@ -132,18 +179,5 @@ export class ApplicantsData extends Component {
         this.setState({ applicantsData: data, loading: false });
     }
 
-    // sorting function for date
-    //onSortChange = () => {
-    //    /*
-    //    assuming your data is something like
-    //    [
-    //      {accountname:'foo', negotiatedcontractvalue:'bar'},
-    //      {accountname:'monkey', negotiatedcontractvalue:'spank'},
-    //      {accountname:'chicken', negotiatedcontractvalue:'dance'},
-    //    ]
-    //    */
-    //    const data = this.state.data;
-    //    data.sort((a, b) => a[sortKey].localeCompare(b[sortKey]))
-    //    this.setState({ data })
-    //}
+
 }

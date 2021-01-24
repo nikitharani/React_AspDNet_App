@@ -85,7 +85,8 @@ namespace ReactDnetApp
         //Insert statement
         public bool Insert(Employee emp)
         {
-            string query = $"INSERT INTO {Tablename} (FirstName,LastName) VALUES('{emp.FirstName}', '{emp.LastName}')";
+            string query = $"INSERT INTO {Tablename} (FirstName,LastName,Email,Address,Mobile,HomePhone,DateOfStart) VALUES("+
+                $"'{emp.FirstName}', '{emp.LastName}','{emp.Email}','{emp.Address}',{emp.Mobile},{emp.Telephone},'{emp.Address}')";
 
             //open connection
             if (this.OpenConnection() == true)
@@ -169,7 +170,10 @@ namespace ReactDnetApp
                 while (dataReader.Read())
                 {
                     count++;
-                    empList.Add(new Employee() { Id = (int)(dataReader["Id"]), Sno=count, FirstName = dataReader["FirstName"].ToString(), LastName = dataReader["LastName"].ToString() });
+                    empList.Add(new Employee() { Id = (int)(dataReader["Id"]), Sno=count, FirstName = dataReader["FirstName"].ToString(),
+                        LastName = dataReader["LastName"].ToString(),Email=dataReader["Email"].ToString(), Mobile =(long)dataReader["Mobile"],
+                        Telephone =(long)dataReader["HomePhone"], Address=dataReader["Address"].ToString(),
+                        DateOfStart =dataReader["DateOfStart"].ToString() });
                 }
 
                 //close Data Reader

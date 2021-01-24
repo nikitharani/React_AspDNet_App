@@ -12,12 +12,15 @@ namespace ReactDnetApp
 
         private string firstname;
         private string lastname;
+        private string address;
         public string FirstName { get { return firstname; } set { firstname = UppercaseWords(value); } }
         public string LastName { get { return lastname; } set { lastname = UppercaseWords(value); } }
-        //public uint Telephone { get; set; }
-        //public string Address { get; set; }
-        //public string Email { get; set; }
-        //public DateTime DateofStart { get; set; }
+        public long Mobile { get; set; }
+        public long Telephone { get; set; }
+        public string Address { get { return address; } set { address = UppercaseWords(value); } }
+        public string Email { get; set; }
+        //public DateTime DateOfStart { get; set; }
+        public string DateOfStart { get; set; }
         //public int StartDay;
         //public int StartMonth; 
         //public int StartYear;
