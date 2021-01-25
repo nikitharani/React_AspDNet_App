@@ -48,61 +48,87 @@ export class AddApplicant extends Component {
                             Add Employee
         </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body style={{ 'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto' }}>
 
-                        <Row>
-                            <Col sm={6}>
+                        {/* <Row>
+                            <Col sm={6}>*/}
                                 <Form onSubmit={this.handleSubmit}>
                                     {/*<Form.Group controlId="Sno">
                                         <Form.Label>Sno</Form.Label>
                                         <Form.Control type="text" name="Sno" required
                                             placeholder="Sno" />
                                     </Form.Group>*/}
-                                    <Form.Group controlId="FirstName">
+                                   
+                            <Form.Row>
+                                
+
+                                    <Form.Group as={Col}  controlId="FirstName">
                                         <Form.Label>FirstName</Form.Label>
                                         <Form.Control type="text" name="FirstName" required
                                             placeholder="FirstName" />
                                     </Form.Group>
-                                    <Form.Group controlId="LastName">
+                                
+                                       
+                                    <Form.Group as={Col}  controlId="LastName">
                                         <Form.Label>LastName</Form.Label>
                                         <Form.Control type="text" name="LastName" required
                                             placeholder="LastName" />
                                     </Form.Group>
+                                
+                            </Form.Row>
+
+
                                     <Form.Group controlId="Email">
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control type="email" name="Email" required
-                                            placeholder="Email" />
-                                    </Form.Group>
-                                    <Form.Group controlId="Mobile">
+                                    placeholder="Email" />
+                                <Form.Text className="text-muted">
+                                    We'll never share your email with anyone else.
+                                </Form.Text>
+                            </Form.Group>
+                            <Form.Row>
+                                <Form.Group as={Col} controlId="Mobile">
                                         <Form.Label>Mobile</Form.Label>
                                         <Form.Control type="tel" name="Mobile" required
                                             placeholder="Mobile" />
                                     </Form.Group>
-                                    <Form.Group controlId="Telephone">
+                                <Form.Group as={Col} controlId="Telephone">
                                         <Form.Label>Telephone</Form.Label>
                                         <Form.Control type="tel" name="Telephone" 
                                             placeholder="Telephone" />
-                                    </Form.Group>
-                                    <Form.Group controlId="Street">
+                                </Form.Group>
+                            </Form.Row>
+                            <legend>Address:</legend>
+
+                            <Form.Row>
+                                
+                                <Form.Group as={Col} controlId="Street">
                                         <Form.Label>Street</Form.Label>
                                         <Form.Control type="street" name="Street" required
                                             placeholder="Street" />
                                     </Form.Group>
-                                    <Form.Group controlId="City">
+                                
+                                
+                                <Form.Group as={Col} controlId="City">
                                         <Form.Label>City</Form.Label>
                                         <Form.Control type="city" name="City" required
-                                            placeholder="City" />
+                                        placeholder="City" />
+                                    
                                     </Form.Group>
-                                    <Form.Group controlId="Country">
+                                   
+                            </Form.Row>
+                            <Form.Row>
+                            <Form.Group as={Col} controlId="Country">
                                         <Form.Label>Country</Form.Label>
                                         <Form.Control type="country" name="Country" required
                                             placeholder="Country" />
                                     </Form.Group>
-                                    <Form.Group controlId="Zip">
+                            <Form.Group as={Col} controlId="Zip">
                                         <Form.Label>Zip</Form.Label>
                                         <Form.Control type="zip" name="Zip" required
                                             placeholder="Zip" />
-                                    </Form.Group>
+                            </Form.Group>
+                            </Form.Row>
                                     <Form.Group controlId="StartDate">
                                         <Form.Label>Date can start</Form.Label>
                                         <Form.Control type="date" name="StartDate" required
@@ -115,8 +141,8 @@ export class AddApplicant extends Component {
                         </Button>
                                     </Form.Group>
                                 </Form>
-                            </Col>
-                        </Row>
+                                {/*</Col>
+                        </Row>*/}
                     </Modal.Body>
 
                     <Modal.Footer>

@@ -86,7 +86,7 @@ namespace ReactDnetApp
         public bool Insert(Employee emp)
         {
             string query = $"INSERT INTO {Tablename} (FirstName,LastName,Email,Address,Mobile,HomePhone,DateOfStart) VALUES("+
-                $"'{emp.FirstName}', '{emp.LastName}','{emp.Email}','{emp.Address}',{emp.Mobile},{emp.Telephone},'{emp.Address}')";
+                $"'{emp.FirstName}', '{emp.LastName}','{emp.Email}','{emp.Address}',{emp.Mobile},{emp.Telephone},'{emp.DateOfStart}')";
 
             //open connection
             if (this.OpenConnection() == true)

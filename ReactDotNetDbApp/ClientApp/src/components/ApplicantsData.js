@@ -1,6 +1,11 @@
 ﻿import React, { Component } from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 //import { DatePicker, DatePickerInput } from 'rc-datepicker';
+//import fontawesomeicon from '@fortawesome/react-fontawesome';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+//import { MDBSmoothScroll } from "mdbreact";
+
 
 import { AddApplicant } from './AddApplicant';
 import { EditApplicant } from './EditApplicant';
@@ -82,25 +87,28 @@ export class ApplicantsData extends Component {
         };
 
         let tablecontents = (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
+            <table  className='table table-striped' aria-labelledby="tabelLabel">
+                <thead >
+                    <tr >
                         <th>Sno</th>
                         <th>FirstName</th>
                         <th>LastName</th>
                         <th>Email</th>                        
                         <th>Mobile</th>
-                        <th>Address</th>
+                        <th>Address</th>               
+                        
 
                         <th>Start Date
-                            <button onClick={this.onSortChange}>
-                                <i className={`fas fa-${sortTypes[currentSort].class}`} />
+                            <button className='ml-2' onClick={this.onSortChange}>
+                                <i className={`fas fa-${sortTypes[currentSort].class} `} />
                             </button>
                         </th>
+                        <th>Edit/Delete</th>
+
                         
                     </tr>
                 </thead>
-                <tbody>
+                <tbody  >
                     {[...applicantsData].sort(sortTypes[currentSort].fn).map(applicantData =>
                         <tr key={applicantData.sno}>
                             <td>{applicantData.sno}</td>
@@ -108,10 +116,12 @@ export class ApplicantsData extends Component {
                             <td>{applicantData.lastName}</td>
                             <td>{applicantData.email}</td>
                             <td>{applicantData.mobile}</td>
+                            <td>{applicantData.address}</td>
                             <td>{applicantData.dateOfStart}</td>
                             <td>
                                 <ButtonToolbar>
-                                    <Button className="mr-2" variant="info"
+                                    <div className="mr-2" >
+                                    <Button className="mr-2 pr-4 pl-3" variant="info"
                                         onClick={() => this.setState({
                                             editModalShow: true,
                                             editsno: applicantData.sno,
@@ -119,7 +129,7 @@ export class ApplicantsData extends Component {
                                             editFirstName: applicantData.firstName,
                                             editLastName: applicantData.lastName
                                         })}>
-                                        Edit
+                                            Edit
                                     </Button>
 
                                     <EditApplicant show={this.state.editModalShow}
@@ -130,10 +140,11 @@ export class ApplicantsData extends Component {
                                         editLastName={editLastName}
                                     />
 
-                                    <Button className="mr-2" variant="danger"
+                                    <Button className="mr-2 mt-1" variant="danger"
                                         onClick={() => this.deleteApplicant(applicantData.id)}>
-                                            Delete
+                                        Delete
                                     </Button> 
+                                    </div>
 
                                 </ButtonToolbar>
                             </td>
@@ -151,7 +162,7 @@ export class ApplicantsData extends Component {
         //execution starts here
         return (
             <div>
-                <h1 id="tabelLabel" >Applicants Data</h1>
+                <h1 id="tabelLabel">Applicants Data</h1>
                 <p>Total Number of Applicants : {applicantsData.length}</p>
                 {/*<button type="button" >All Employee</button>
                  <Button variant='primary'
@@ -168,8 +179,8 @@ export class ApplicantsData extends Component {
 
                     <AddApplicant show={this.state.addModalShow}
                         onHide={addModalClose} />
-                </ButtonToolbar>
-            </div>
+                    </ButtonToolbar>
+                    </div>
         );
     }
 
