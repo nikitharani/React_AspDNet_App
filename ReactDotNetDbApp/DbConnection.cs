@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-//Add MySql Library
-//using MySql.Data.MySqlClient;
+//Add Sql Library
 using System.Data;
 using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 
 namespace ReactDnetApp
 {
@@ -30,15 +28,8 @@ namespace ReactDnetApp
         {
             Tablename = "employeapp";
 
-            string connectionString = Environment.GetEnvironmentVariable("REACT_DB_URL");
-            //string connectionString = "Data Source=.;Initial Catalog=DotNetApp;Integrated Security=true";
-            //string connectionString = @"Data Source=LAPTOP-9EB2FOHB;Initial Catalog=DotNetApp;User ID=LAPTOP-9EB2FOHB\\Ramuni;Password=";
-            //string connectionString = "user id=LAPTOP-9EB2FOHB\\Ramuni;password=;server=LAPTOP-9EB2FOHB;Trusted_Connection=yes;database=DotNetApp;connection timeout=30";
-
+            string connectionString = Environment.GetEnvironmentVariable("REACT_DB_URL"); 
             connection = new SqlConnection(connectionString);
-            //string connectionString = "SERVER=LAPTOP-9EB2FOHB;DATABASE=DotNetApp;UID=LAPTOP-9EB2FOHB\\Ramuni;PASSWORD=;";
-            //connection = new MySqlConnection(connectionString);
-
         }
 
         //open connection to database
