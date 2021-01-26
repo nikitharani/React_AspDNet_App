@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 //Add MySql Library
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
+using System.Data;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace ReactDnetApp
 {
     public class DbConnection
     {
-        private MySqlConnection connection;
+        private SqlConnection connection;
         public string Server { get; set; }
         public string Database { get; set; }
         public string Uid { get; set; }
@@ -25,10 +28,16 @@ namespace ReactDnetApp
         //Initialize values
         private void Initialize()
         {
-            Tablename = "employeeapp";
+            Tablename = "employeapp";
 
             string connectionString = Environment.GetEnvironmentVariable("REACT_DB_URL");
-            connection = new MySqlConnection(connectionString);
+            //string connectionString = "Data Source=.;Initial Catalog=DotNetApp;Integrated Security=true";
+            //string connectionString = @"Data Source=LAPTOP-9EB2FOHB;Initial Catalog=DotNetApp;User ID=LAPTOP-9EB2FOHB\\Ramuni;Password=";
+            //string connectionString = "user id=LAPTOP-9EB2FOHB\\Ramuni;password=;server=LAPTOP-9EB2FOHB;Trusted_Connection=yes;database=DotNetApp;connection timeout=30";
+
+            connection = new SqlConnection(connectionString);
+            //string connectionString = "SERVER=LAPTOP-9EB2FOHB;DATABASE=DotNetApp;UID=LAPTOP-9EB2FOHB\\Ramuni;PASSWORD=;";
+            //connection = new MySqlConnection(connectionString);
 
         }
 
@@ -40,23 +49,9 @@ namespace ReactDnetApp
                 connection.Open();
                 return true;
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                //When handling errors, you can your application's response based 
-                //on the error number.
-                //The two most common error numbers when connecting are as follows:
-                //0: Cannot connect to server.
-                //1045: Invalid user name and/or password.
-                switch (ex.Number)
-                {
-                    case 0:
-                        Console.WriteLine("Cannot connect to server.  Contact administrator");
-                        break;
-
-                    case 1045:
-                        Console.WriteLine("Invalid username/password, please try again");
-                        break;
-                }
+                Console.WriteLine("Can not open connection ! ");
                 return false;
             }
         }
@@ -69,7 +64,7 @@ namespace ReactDnetApp
                 connection.Close();
                 return true;
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
@@ -86,7 +81,7 @@ namespace ReactDnetApp
             if (this.OpenConnection() == true)
             {
                 //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                SqlCommand cmd = new SqlCommand(query, connection);
 
                 //Execute command
                 cmd.ExecuteNonQuery();
@@ -109,7 +104,7 @@ namespace ReactDnetApp
             if (this.OpenConnection() == true)
             {
                 //create mysql command
-                MySqlCommand cmd = new MySqlCommand();
+                SqlCommand cmd = new SqlCommand();
                 //Assign the query using CommandText
                 cmd.CommandText = query;
                 //Assign the connection using Connection
@@ -133,7 +128,7 @@ namespace ReactDnetApp
 
             if (this.OpenConnection() == true)
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
                 this.CloseConnection();
 
@@ -154,9 +149,9 @@ namespace ReactDnetApp
             if (this.OpenConnection() == true)
             {
                 //Create Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                SqlCommand cmd = new SqlCommand(query, connection);
                 //Create a data reader and Execute the command
-                MySqlDataReader dataReader = cmd.ExecuteReader();
+                SqlDataReader dataReader = cmd.ExecuteReader();
 
                 int count = 0;
 
