@@ -1,0 +1,31 @@
+﻿
+table {
+    width: 100%;
+}
+
+thead, tbody, tr, td, th {
+    display: block;
+}
+
+    tr:after {
+        content: ' ';
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+
+    thead th {
+        height: 80px;
+        /*text-align: left;*/
+    }
+
+tbody {
+    /*height: 120px;*/
+    height: 400px;
+    overflow-y: auto;
+}
+
+    tbody td, thead th {
+        width: 12.2%;
+        float: left;
+    }

@@ -21,7 +21,7 @@ export class AddApplicant extends Component {
                 Email: event.target.Email.value,
                 Mobile: parseInt(event.target.Mobile.value),
                 Telephone: parseInt(event.target.Telephone.value),
-                Address: event.target.Street.value + ", \n" + event.target.City.value + ", \n" + event.target.Country.value + ", \n" + event.target.Zip.value,
+                Address: event.target.Street.value + ", " + event.target.City.value + ", " + event.target.Country.value + ", " + event.target.Zip.value,
                 DateOfStart: event.target.StartDate.value
             })
         })
@@ -49,38 +49,22 @@ export class AddApplicant extends Component {
         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body style={{ 'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto' }}>
-
-                        {/* <Row>
-                            <Col sm={6}>*/}
-                                <Form onSubmit={this.handleSubmit}>
-                                    {/*<Form.Group controlId="Sno">
-                                        <Form.Label>Sno</Form.Label>
-                                        <Form.Control type="text" name="Sno" required
-                                            placeholder="Sno" />
-                                    </Form.Group>*/}
-                                   
+                        <Form onSubmit={this.handleSubmit}>
                             <Form.Row>
-                                
-
-                                    <Form.Group as={Col}  controlId="FirstName">
-                                        <Form.Label>FirstName</Form.Label>
-                                        <Form.Control type="text" name="FirstName" required
-                                            placeholder="FirstName" />
-                                    </Form.Group>
-                                
-                                       
-                                    <Form.Group as={Col}  controlId="LastName">
-                                        <Form.Label>LastName</Form.Label>
-                                        <Form.Control type="text" name="LastName" required
-                                            placeholder="LastName" />
-                                    </Form.Group>
-                                
+                                <Form.Group as={Col} controlId="FirstName">
+                                    <Form.Label>FirstName</Form.Label>
+                                    <Form.Control type="text" name="FirstName" required
+                                        placeholder="FirstName" />
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="LastName">
+                                    <Form.Label>LastName</Form.Label>
+                                    <Form.Control type="text" name="LastName" required
+                                        placeholder="LastName" />
+                                </Form.Group>
                             </Form.Row>
-
-
-                                    <Form.Group controlId="Email">
-                                        <Form.Label>Email</Form.Label>
-                                        <Form.Control type="email" name="Email" required
+                            <Form.Group controlId="Email">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" name="Email" required
                                     placeholder="Email" />
                                 <Form.Text className="text-muted">
                                     We'll never share your email with anyone else.
@@ -88,61 +72,58 @@ export class AddApplicant extends Component {
                             </Form.Group>
                             <Form.Row>
                                 <Form.Group as={Col} controlId="Mobile">
-                                        <Form.Label>Mobile</Form.Label>
-                                        <Form.Control type="tel" name="Mobile" required
-                                            placeholder="Mobile" />
-                                    </Form.Group>
+                                    <Form.Label>Mobile</Form.Label>
+                                    <Form.Control type="tel" name="Mobile"  required
+                                        placeholder="(99)9999-9999" pattern='\d{10}' />
+
+                                </Form.Group>
                                 <Form.Group as={Col} controlId="Telephone">
-                                        <Form.Label>Telephone</Form.Label>
-                                        <Form.Control type="tel" name="Telephone" 
-                                            placeholder="Telephone" />
+                                    <Form.Label>Telephone</Form.Label>
+                                    <Form.Control type="tel" name="Telephone"
+                                        placeholder="Telephone" />
                                 </Form.Group>
                             </Form.Row>
                             <legend>Address:</legend>
 
                             <Form.Row>
-                                
+
                                 <Form.Group as={Col} controlId="Street">
-                                        <Form.Label>Street</Form.Label>
-                                        <Form.Control type="street" name="Street" required
-                                            placeholder="Street" />
-                                    </Form.Group>
-                                
-                                
+                                    <Form.Label>Street</Form.Label>
+                                    <Form.Control type="street" name="Street" required
+                                        placeholder="Street" />
+                                </Form.Group>
+
+
                                 <Form.Group as={Col} controlId="City">
-                                        <Form.Label>City</Form.Label>
-                                        <Form.Control type="city" name="City" required
+                                    <Form.Label>City</Form.Label>
+                                    <Form.Control type="city" name="City" required
                                         placeholder="City" />
-                                    
-                                    </Form.Group>
-                                   
+                                </Form.Group>
                             </Form.Row>
                             <Form.Row>
-                            <Form.Group as={Col} controlId="Country">
-                                        <Form.Label>Country</Form.Label>
-                                        <Form.Control type="country" name="Country" required
-                                            placeholder="Country" />
-                                    </Form.Group>
-                            <Form.Group as={Col} controlId="Zip">
-                                        <Form.Label>Zip</Form.Label>
-                                        <Form.Control type="zip" name="Zip" required
-                                            placeholder="Zip" />
-                            </Form.Group>
+                                <Form.Group as={Col} controlId="Country">
+                                    <Form.Label>Country</Form.Label>
+                                    <Form.Control type="country" name="Country" required
+                                        placeholder="Country" />
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="Zip">
+                                    <Form.Label>Zip</Form.Label>
+                                    <Form.Control type="zip" name="Zip" required
+                                        placeholder="Zip" />
+                                </Form.Group>
                             </Form.Row>
-                                    <Form.Group controlId="StartDate">
-                                        <Form.Label>Date can start</Form.Label>
-                                        <Form.Control type="date" name="StartDate" required
-                                            data-date-format="DD/MM/YYYY"/>
-                                    </Form.Group>
+                            <Form.Group controlId="StartDate">
+                                <Form.Label>Date can start</Form.Label>
+                                <Form.Control type="date" name="StartDate" required
+                                    data-date-format="DD/MM/YYYY" min="2021-01-27" max="2021-12-31" />
+                            </Form.Group>
 
-                                    <Form.Group>
-                                        <Button variant="primary" type="submit">
-                                            Add Employee
+                            <Form.Group>
+                                <Button variant="primary" type="submit">
+                                    Add Applicant
                         </Button>
-                                    </Form.Group>
-                                </Form>
-                                {/*</Col>
-                        </Row>*/}
+                            </Form.Group>
+                        </Form>
                     </Modal.Body>
 
                     <Modal.Footer>

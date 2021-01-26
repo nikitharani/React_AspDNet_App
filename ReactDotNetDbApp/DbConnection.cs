@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 //Add MySql Library
 using MySql.Data.MySqlClient;
 
@@ -26,16 +25,11 @@ namespace ReactDnetApp
         //Initialize values
         private void Initialize()
         {
-            Server = "localhost";
-            Database = "dotnetapp";
-            Uid = "root";
-            Password = "";
             Tablename = "employeeapp";
-            string connectionString;
-            connectionString = "SERVER=" + Server + ";" + "DATABASE=" +
-            Database + ";" + "UID=" + Uid + ";" + "PASSWORD=" + Password + ";";
 
+            string connectionString = Environment.GetEnvironmentVariable("REACT_DB_URL");
             connection = new MySqlConnection(connectionString);
+
         }
 
         //open connection to database
@@ -191,40 +185,7 @@ namespace ReactDnetApp
             }
         }
 
-        ////Count statement
-        //public int Count()
-        //{
-        //    string query = $"SELECT Count(*) FROM {Tablename}";
-        //    int Count = -1;
-
-        //    //Open Connection
-        //    if (this.OpenConnection() == true)
-        //    {
-        //        //Create Mysql Command
-        //        MySqlCommand cmd = new MySqlCommand(query, connection);
-
-        //        //ExecuteScalar will return one value
-        //        Count = int.Parse(cmd.ExecuteScalar() + "");
-
-        //        //close Connection
-        //        this.CloseConnection();
-
-        //        return Count;
-        //    }
-        //    else
-        //    {
-        //        return Count;
-        //    }
-        //}
-
-        ////Backup
-        //public void Backup()
-        //{
-        //}
-
-        ////Restore
-        //public void Restore()
-        //{
-        //}
+        
+        
     }
 }

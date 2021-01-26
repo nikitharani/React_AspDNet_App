@@ -13,10 +13,7 @@ namespace ReactDnetApp.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        //private static readonly string[] Summaries = new[]
-        //{
-        //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        //};
+        
 
         private readonly ILogger<EmployeeController> _logger;
 
@@ -39,19 +36,7 @@ namespace ReactDnetApp.Controllers
 
             return new JsonResult(empList);
 
-            //List<Employee> empList = new List<Employee>
-            //{
-            //    new Employee{Sno=1, Id=1,FirstName="Abhinav",LastName="Bangalore"},
-
-            //    new Employee{Sno=2, Id=2,FirstName="Abhishek",LastName="Chennai"},
-
-            //    new Employee{Sno=3, Id=3,FirstName="Akshay",LastName="Bangalore"},
-
-            //    new Employee{Sno=4, Id=4,FirstName="Akash",LastName="Chennai"},
-
-            //    new Employee{Sno=5, Id=5,FirstName="Anil",LastName="Bangalore"}
-            //};
-            //return empList;
+            
         }
         [HttpPost]
         //post method

@@ -1,23 +1,16 @@
 ﻿import React, { Component } from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';
-//import { DatePicker, DatePickerInput } from 'rc-datepicker';
-//import fontawesomeicon from '@fortawesome/react-fontawesome';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-//import { MDBSmoothScroll } from "mdbreact";
-
-
 import { AddApplicant } from './AddApplicant';
 import { EditApplicant } from './EditApplicant';
+import './applicationData.css';
 
 
 export class ApplicantsData extends Component {
 
-    //static displayName = FetchData.name;
 
     constructor(props) {
         super(props);
-        this.state = { applicantsData: [], loading: true, addModalShow: false, editModalShow: false, currentSort: 'default'};
+        this.state = { applicantsData: [], loading: true, addModalShow: false, editModalShow: false, currentSort: 'default' };
     }
 
     componentDidMount() {
@@ -29,7 +22,7 @@ export class ApplicantsData extends Component {
     //Delete
     deleteApplicant(empid) {
         if (window.confirm('Are you sure?')) {
-            fetch("api/employee/"+empid, {
+            fetch("api/employee/" + empid, {
                 method: 'DELETE',
                 header: {
                     'Accept': 'application/json',
@@ -62,8 +55,7 @@ export class ApplicantsData extends Component {
     };
 
     render() {
-        //added new line
-        const { editsno, editId, editFirstName, editLastName } = this.state;     
+        const { editsno, editId, editFirstName, editLastName } = this.state;
         const { currentSort } = this.state;
 
         let addModalClose = () => this.setState({ addModalShow: false });
@@ -87,16 +79,16 @@ export class ApplicantsData extends Component {
         };
 
         let tablecontents = (
-            <table  className='table table-striped' aria-labelledby="tabelLabel">
+            <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead >
                     <tr >
                         <th>Sno</th>
                         <th>FirstName</th>
                         <th>LastName</th>
-                        <th>Email</th>                        
+                        <th>Email</th>
                         <th>Mobile</th>
-                        <th>Address</th>               
-                        
+                        <th>Address</th>
+
 
                         <th>Start Date
                             <button className='ml-2' onClick={this.onSortChange}>
@@ -105,7 +97,7 @@ export class ApplicantsData extends Component {
                         </th>
                         <th>Edit/Delete</th>
 
-                        
+
                     </tr>
                 </thead>
                 <tbody  >
@@ -121,29 +113,28 @@ export class ApplicantsData extends Component {
                             <td>
                                 <ButtonToolbar>
                                     <div className="mr-2" >
-                                    <Button className="mr-2 pr-4 pl-3" variant="info"
-                                        onClick={() => this.setState({
-                                            editModalShow: true,
-                                            editsno: applicantData.sno,
-                                            editId: applicantData.id,
-                                            editFirstName: applicantData.firstName,
-                                            editLastName: applicantData.lastName
-                                        })}>
+                                        <Button className="mr-2 pr-4 pl-3" variant="info"
+                                            onClick={() => this.setState({
+                                                editModalShow: true,
+                                                editsno: applicantData.sno,
+                                                editId: applicantData.id,
+                                                editFirstName: applicantData.firstName,
+                                                editLastName: applicantData.lastName
+                                            })}>
                                             Edit
                                     </Button>
 
-                                    <EditApplicant show={this.state.editModalShow}
-                                        onHide={editModalClose}
-                                        editsno={editsno}
-                                        editid={editId}
-                                        editFirstName={editFirstName}
-                                        editLastName={editLastName}
-                                    />
-
-                                    <Button className="mr-2 mt-1" variant="danger"
-                                        onClick={() => this.deleteApplicant(applicantData.id)}>
-                                        Delete
-                                    </Button> 
+                                        <EditApplicant show={this.state.editModalShow}
+                                            onHide={editModalClose}
+                                            editsno={editsno}
+                                            editid={editId}
+                                            editFirstName={editFirstName}
+                                            editLastName={editLastName}
+                                        />
+                                        <Button className="mr-2 mt-1" variant="danger"
+                                            onClick={() => this.deleteApplicant(applicantData.id)}>
+                                            Delete
+                                    </Button>
                                     </div>
 
                                 </ButtonToolbar>
@@ -162,25 +153,22 @@ export class ApplicantsData extends Component {
         //execution starts here
         return (
             <div>
-                <h1 id="tabelLabel">Applicants Data</h1>
-                <p>Total Number of Applicants : {applicantsData.length}</p>
-                {/*<button type="button" >All Employee</button>
-                 <Button variant='primary'
-                    onClick={() => this.setState({ addModalShow: true })}>
-                    Add Employee</Button>*/}
+                <div className="d-flex justify-content-between">
+                    <h1 id="tabelLabel">Applicants Data</h1>
+                    <ButtonToolbar>
+                        <Button variant='primary'
+                            onClick={() => this.setState({ addModalShow: true })}>
+                            Add Applicant</Button>
 
-                {contents}
-                
-                {/*Add Employee Button*/}
-                <ButtonToolbar>
-                    <Button variant='primary'
-                        onClick={() => this.setState({ addModalShow: true })}>
-                        Add Employee</Button>
-
-                    <AddApplicant show={this.state.addModalShow}
-                        onHide={addModalClose} />
+                        <AddApplicant show={this.state.addModalShow}
+                            onHide={addModalClose} />
                     </ButtonToolbar>
-                    </div>
+                </div>
+                <p>Total Number of Applicants : {applicantsData.length}</p>
+                {/*Add Applicant Button*/}
+                {contents}
+
+            </div>
         );
     }
 

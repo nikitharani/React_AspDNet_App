@@ -19,22 +19,8 @@ namespace ReactDnetApp
         public long Telephone { get; set; }
         public string Address { get { return address; } set { address = UppercaseWords(value); } }
         public string Email { get; set; }
-        //public DateTime DateOfStart { get; set; }
         public string DateOfStart { get; set; }
-        //public int StartDay;
-        //public int StartMonth; 
-        //public int StartYear;
 
-
-        //// constructor
-        //public Employee(uint id, uint sno, string fname, string lname)
-        //{
-        //    this.Id = id;
-        //    this.Sno = sno;
-        //    this.FirstName = fname;
-        //    this.LastName = lname;
-
-        //}
 
         // Capitalise the first letter in the string.
         private string UppercaseWords(string value)
@@ -59,6 +45,7 @@ namespace ReactDnetApp
                         array[i] = char.ToUpper(array[i]);
                     }
                 }
+
             }
             return new string(array);
         }
